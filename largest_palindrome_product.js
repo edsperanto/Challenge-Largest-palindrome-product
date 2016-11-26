@@ -11,12 +11,10 @@ module.exports = function(digits){
   var palindromeNumber = 0;
   var maxNum = 0;
   var product = 0;
-  var factor0_ans = 0;
-  var factor1_ans = 0;
+  var temp0 = 0;
+  var temp1 = 0;
 
   // do your work here
-  factor_0 = 10 * (digits-1);
-  factor_1 = 10 * (digits-1);
 
   // calculate max number for each factor
   for(var i = 0; i < digits; i++) {
@@ -24,12 +22,12 @@ module.exports = function(digits){
   }
 
   // loop through numbers
-  for(factor_0; factor_0 < maxNum; factor_0++) {
-    for(factor_1; factor_1 < maxNum; factor_1++) {
-      product = factor_0 * factor_1;
+  for(temp0 = 10 * (digits-1); temp0 <= maxNum; temp0++) {
+    for(temp1 = 10 * (digits-1); temp1 <= maxNum; temp1++) {
+      product = temp0 * temp1;
       if(checkSymmetry(product)) {
-        factor0_ans = factor_0;
-        factor1_ans = factor_1;
+        factor_0 = temp0;
+        factor_1 = temp1;
         palindromeNumber = product;
       }
     }
@@ -43,6 +41,7 @@ module.exports = function(digits){
     var str2;
     var loc1 = 0;
     var loc2;
+    var fullMatch = false;
     if(fullStr.length % 2 === 0) {
       halfLength = fullStr.length / 2;
     }else{
@@ -51,18 +50,13 @@ module.exports = function(digits){
     loc2 = halfLength-1;
     str1 = fullStr.substr(0,halfLength);
     str2 = fullStr.substr((halfLength-1), halfLength);
-    while(loc1 < halfLength) {
-      if(str1.charAt(loc1) !== str2.charAt(loc2)) {
-        return false;
-      }
-      loc1++;
-    }
-    return true;
+    console.log(fullStr);
+    return fullMatch;
   }
 
   return {
-    factor_0 : factor0_ans,
-    factor_1 : factor1_ans,
+    factor_0 : factor_0,
+    factor_1 : factor_1,
     palindromeNumber : palindromeNumber
   };
 };
