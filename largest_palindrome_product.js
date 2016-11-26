@@ -41,18 +41,22 @@ module.exports = function(digits){
     var fullLength = fullStr.length;
     var halfLength;
     var match = true;
+    var i;
+    var j;
     if(fullStr.length % 2 === 0) {
       halfLength = fullStr.length / 2;
     }else{
       halfLength = (fullStr.length - 1) / 2;
     }
-    for(var i = 0; i < halfLength; i++) { // loop from beginnning
-      for(var j = (fullLength - 1); j > halfLength; j--) { // loop from end
-        if(fullStr.charAt(i) !== fullStr.charAt(j)) {
-          match = false;
-        }
-        console.log(fullStr.charAt(i), fullStr.charAt(j), match);
+    i = 0;
+    j = (fullLength - 1);
+    for(i; i < halfLength; i++) { // loop from beginnning
+
+      if(fullStr.charAt(i) !== fullStr.charAt(j)) {
+        match = false;
       }
+      j--;
+      //console.log(fullStr, fullStr.charAt(i), fullStr.charAt(j), match);
     }
     return match;
   }
