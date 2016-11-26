@@ -28,7 +28,9 @@ module.exports = function(digits){
       if(checkSymmetry(product)) {
         factor_0 = temp0;
         factor_1 = temp1;
-        palindromeNumber = product;
+        if(product > palindromeNumber) {
+          palindromeNumber = product;
+        }
       }
     }
   }
@@ -36,22 +38,23 @@ module.exports = function(digits){
   // check symmetry
   function checkSymmetry(num) {
     var fullStr = num.toString();
+    var fullLength = fullStr.length;
     var halfLength;
-    var str1;
-    var str2;
-    var loc1 = 0;
-    var loc2;
-    var fullMatch = false;
+    var match = true;
     if(fullStr.length % 2 === 0) {
       halfLength = fullStr.length / 2;
     }else{
       halfLength = (fullStr.length - 1) / 2;
     }
-    loc2 = halfLength-1;
-    str1 = fullStr.substr(0,halfLength);
-    str2 = fullStr.substr((halfLength-1), halfLength);
-    console.log(fullStr);
-    return fullMatch;
+    for(var i = 0; i < halfLength; i++) { // loop from beginnning
+      for(var j = (fullLength - 1); j > halfLength; j--) { // loop from end
+        if(fullStr.charAt(i) !== fullStr.charAt(j)) {
+          match = false;
+        }
+        console.log(fullStr.charAt(i), fullStr.charAt(j), match);
+      }
+    }
+    return match;
   }
 
   return {
